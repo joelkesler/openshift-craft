@@ -4,9 +4,18 @@ A hackity way to install and run [Craft](http://buildwithcraft.com/) on Redhat's
 
 It has been configured to run on the **Zend Server** Gear with the **MySQL** cartridge. **This is still very much a work in progress.  Use at your own risk**
 
+## Installing Tips
+
+Be sure to add the **MySQL** catridge to your gear running the craft install before initiating the install.  If not, you may get errors stating craft is unable to use the provided database credentials to connect.  This is possibly due to Zend cacheing the output of the installer script.
+
+The img folder is a place to store your asset uploads.  It is available internally with the path "img/" and externally with {{yourdomain}}.com/img/
+
 ## How does it work?
 
-I have placed a lightly-modified copy of Craft in the  .openshift/ directory.  The deploy shell script in the .openshift/action_hooks/ directory moves the craft folder into the persistent data directory on first run.
+I have placed a lightly-modified copy of Craft in the  .openshift/ directory.  The deploy shell script in the .openshift/action_hooks/ directory copies the craft folder into the persistent-data directory on first run.
+
+(I do this because Craft has its own auto-update system that updates both itself and the mysql database.)
+
 
 ## What has been modified in the Craft folder?
 
